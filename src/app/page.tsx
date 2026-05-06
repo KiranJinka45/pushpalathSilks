@@ -49,6 +49,32 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Achievements Section */}
+      <section className="py-20 bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-primary uppercase tracking-[0.2em] mb-4">Our Legacy & Achievements</h2>
+            <div className="h-1 bg-secondary w-24 mx-auto mb-8" />
+          </div>
+          
+          <div className="relative group rounded-3xl overflow-hidden shadow-2xl border border-muted">
+            <img 
+              src="/silk-mark-cert.jpg" 
+              alt="Silk Mark Certificate" 
+              className="w-full h-[400px] md:h-[600px] object-contain bg-white transition-transform duration-1000 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end">
+              <div className="p-8 md:p-12 text-white">
+                <h3 className="text-2xl md:text-3xl font-bold mb-4 uppercase tracking-wider text-secondary">Crafting Excellence Since Generations</h3>
+                <p className="max-w-2xl text-lg text-white/90 leading-relaxed">
+                  Pushpalatha Silks represents the pinnacle of Dharmavaram handloom tradition. Our commitment to quality and authenticity has made us a trusted name for pure silk sarees across India and beyond.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <CategorySection />
 
       {/* Featured Products Call to Action */}
@@ -103,13 +129,19 @@ export default function Home() {
                   <div className="h-12 w-12 bg-muted rounded-full flex items-center justify-center flex-shrink-0 text-primary">
                     <Phone size={24} />
                   </div>
-                  <div>
+                  <div className="flex flex-col space-y-2">
                     <h4 className="font-bold text-primary text-lg mb-1">Call / WhatsApp</h4>
                     <a 
                       href="tel:08886851521" 
                       className="text-muted-foreground leading-relaxed hover:text-secondary transition-colors"
                     >
                       +91 88868 51521
+                    </a>
+                    <a 
+                      href="tel:08886851131" 
+                      className="text-muted-foreground leading-relaxed hover:text-secondary transition-colors"
+                    >
+                      +91 88868 51131
                     </a>
                   </div>
                 </div>

@@ -68,9 +68,14 @@ export default function ContactPage() {
               <p className="text-muted-foreground text-sm leading-relaxed mb-6">
                 Give us a call for immediate assistance.
               </p>
-              <a href="tel:08886851521" className="text-xl font-bold text-primary hover:text-secondary transition-colors">
-                +91 88868 51521
-              </a>
+              <div className="flex flex-col space-y-2">
+                <a href="tel:08886851521" className="text-xl font-bold text-primary hover:text-secondary transition-colors">
+                  +91 88868 51521
+                </a>
+                <a href="tel:08886851131" className="text-xl font-bold text-primary hover:text-secondary transition-colors">
+                  +91 88868 51131
+                </a>
+              </div>
             </motion.div>
 
             <motion.div
@@ -85,7 +90,7 @@ export default function ContactPage() {
                 Directly message us to view more designs or place orders.
               </p>
               <a
-                href="https://wa.me/918886851521"
+                href="https://wa.me/918886851131"
                 className="inline-flex items-center space-x-2 px-6 py-3 bg-[#25D366] text-white rounded-full font-bold text-sm hover:opacity-90 transition-all shadow-lg"
               >
                 <span>Chat Now</span>
@@ -124,7 +129,7 @@ export default function ContactPage() {
                   YouTube
                 </a>
                 <a
-                  href="https://wa.me/918886851521"
+                  href="https://wa.me/918886851131"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-primary font-bold hover:text-secondary transition-colors"

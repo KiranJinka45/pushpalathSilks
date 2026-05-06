@@ -8,9 +8,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div className="col-span-1 md:col-span-1">
-            <Link href="/" className="flex flex-col mb-6">
-              <span className="text-2xl font-bold tracking-tight">Pushpalatha</span>
-              <span className="text-xs uppercase tracking-[0.3em] text-secondary font-bold">Silks</span>
+            <Link href="/" className="flex items-center space-x-3 mb-6 group">
+              <div className="h-12 w-12 bg-white rounded-xl flex items-center justify-center overflow-hidden border border-white/20 shadow-lg transition-transform group-hover:scale-105">
+                <img src="/logo.jpg" alt="Logo" className="h-full w-full object-cover" />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-2xl font-bold tracking-tight">Pushpalatha</span>
+                <span className="text-xs uppercase tracking-[0.3em] text-secondary font-bold">Silks</span>
+              </div>
             </Link>
             <p className="text-primary-foreground/80 text-sm leading-relaxed mb-6">
               Authentic Dharmavaram and Kanchipuram silk sarees. Crafting elegance and tradition since years.
@@ -33,7 +38,7 @@ export default function Footer() {
                 YouTube
               </a>
               <a 
-                href="https://wa.me/918886851521" 
+                href="https://wa.me/918886851131" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="text-sm font-medium hover:text-secondary transition-colors"
@@ -80,9 +85,15 @@ export default function Footer() {
                   <span>4-415-1, Siva Nagar, Dharmavaram, Andhra Pradesh 515671</span>
                 </a>
               </li>
-              <li className="flex items-center space-x-3">
-                <Phone size={18} className="text-secondary flex-shrink-0" />
-                <span>+91 88868 51521</span>
+              <li className="flex flex-col space-y-2">
+                <div className="flex items-center space-x-3">
+                  <Phone size={18} className="text-secondary flex-shrink-0" />
+                  <span>+91 88868 51521</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Phone size={18} className="text-secondary flex-shrink-0" />
+                  <span>+91 88868 51131</span>
+                </div>
               </li>
               <li className="flex items-center space-x-3">
                 <Clock size={18} className="text-secondary flex-shrink-0" />

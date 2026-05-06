@@ -60,8 +60,8 @@ export default function Navbar() {
         <div className="flex justify-between h-20 items-center">
           <div className="flex-shrink-0 flex items-center">
             <Link href="/" className="flex items-center space-x-2 group">
-              <div className="h-10 w-10 bg-primary rounded-xl flex items-center justify-center text-secondary transition-transform group-hover:rotate-12">
-                <Sparkles size={24} fill="currentColor" />
+              <div className="h-10 w-10 bg-white rounded-xl flex items-center justify-center overflow-hidden border border-muted shadow-sm transition-transform group-hover:rotate-6">
+                <img src="/logo.jpg" alt="Logo" className="h-full w-full object-cover" />
               </div>
               <div className="flex flex-col">
                 <span className="text-xl font-bold text-primary tracking-tight leading-none">Pushpalatha</span>
