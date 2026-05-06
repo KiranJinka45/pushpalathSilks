@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pushpalatha Silk Sarees - E-commerce Catalog
+
+A premium, mobile-first silk saree catalog website built with Next.js 14 and Supabase.
+
+## Features
+- **Premium Design**: Maroon, Gold, and Ivory aesthetic with Framer Motion animations.
+- **Product Catalog**: Browsable grid with search, category, and price filters.
+- **WhatsApp Checkout**: Direct enquiry system for orders via WhatsApp.
+- **Admin Dashboard**: Secure management of products, categories, and inventory.
+- **Image Management**: Integrated with Supabase Storage for product images.
+
+## Tech Stack
+- **Framework**: Next.js 14 (App Router)
+- **Styling**: Tailwind CSS
+- **Database/Auth/Storage**: Supabase
+- **Icons**: Lucide React
+- **Animations**: Framer Motion
 
 ## Getting Started
 
-First, run the development server:
+### 1. Prerequisites
+- Node.js 18+ installed.
+- A Supabase project with the schema applied from `supabase/schema.sql`.
+- **Storage Buckets**: You MUST create two public buckets in your Supabase dashboard:
+  - `product-images`: For product photography.
+  - `product-videos`: For product showcase videos.
 
+### 2. Environment Variables
+The project is already configured with the provided Supabase keys in `.env.local`.
+
+### 3. Database Setup
+Ensure you run the SQL commands in `supabase/schema.sql` to create the following tables and set up RLS policies:
+- `products`, `categories`, `profiles`
+- `product_images`, `product_videos`
+- `orders`, `order_items` (New for Phase 2)
+
+### 4. SEO & Performance
+- **Server Components**: Product details are now server-rendered for maximum SEO performance.
+- **Dynamic Metadata**: Every product page generates unique title and meta tags.
+
+### 3. Installation
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 4. Running Locally
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 5. Admin Access
+1. Sign up as a new user on the `/signup` page.
+2. In your Supabase Dashboard, go to the `profiles` table.
+3. Find your user ID and change the `role` column from `'customer'` to `'admin'`.
+4. You can now access the admin dashboard at `/admin`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deployment
+This project is ready for deployment on **Vercel**. Simply push to a GitHub repository and connect it to Vercel.
