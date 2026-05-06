@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
+import { ReactNode } from "react";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import AnnouncementBar from "@/components/AnnouncementBar";
-import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
 import { CartProvider } from "@/context/CartContext";
+import LayoutContent from "../components/LayoutContent";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,19 +15,15 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.className} min-h-screen flex flex-col antialiased`}>
+      <body className={`${inter.className} min-h-screen flex flex-col antialiased bg-[#FFFDF0]`}>
         <CartProvider>
-          <AnnouncementBar />
-          <Navbar />
-          <main className="flex-grow">
+          <LayoutContent>
             {children}
-          </main>
-          <Footer />
-          <WhatsAppButton />
+          </LayoutContent>
         </CartProvider>
       </body>
     </html>

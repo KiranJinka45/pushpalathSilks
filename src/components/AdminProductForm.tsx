@@ -356,7 +356,7 @@ export default function AdminProductForm({ productId }: AdminProductFormProps) {
               <input 
                 type="number" 
                 required
-                className="w-full px-4 py-3 rounded-xl border border-muted outline-none"
+                className="w-full px-4 py-3 rounded-xl border border-muted focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                 value={formData.price}
                 onChange={(e) => setFormData({...formData, price: e.target.value})}
               />
@@ -365,7 +365,7 @@ export default function AdminProductForm({ productId }: AdminProductFormProps) {
               <label className="text-xs font-bold text-primary uppercase tracking-widest mb-2 block">Discount Price (₹)</label>
               <input 
                 type="number" 
-                className="w-full px-4 py-3 rounded-xl border border-muted outline-none"
+                className="w-full px-4 py-3 rounded-xl border border-muted focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                 value={formData.discount_price}
                 onChange={(e) => setFormData({...formData, discount_price: e.target.value})}
               />
@@ -378,7 +378,7 @@ export default function AdminProductForm({ productId }: AdminProductFormProps) {
                 type="text" 
                 required
                 placeholder="e.g. Pure Silk"
-                className="w-full px-4 py-3 rounded-xl border border-muted outline-none"
+                className="w-full px-4 py-3 rounded-xl border border-muted focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                 value={formData.fabric}
                 onChange={(e) => setFormData({...formData, fabric: e.target.value})}
               />
@@ -388,7 +388,7 @@ export default function AdminProductForm({ productId }: AdminProductFormProps) {
               <input 
                 type="text" 
                 required
-                className="w-full px-4 py-3 rounded-xl border border-muted outline-none"
+                className="w-full px-4 py-3 rounded-xl border border-muted focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                 value={formData.color}
                 onChange={(e) => setFormData({...formData, color: e.target.value})}
               />
@@ -397,7 +397,7 @@ export default function AdminProductForm({ productId }: AdminProductFormProps) {
           <div>
             <label className="text-xs font-bold text-primary uppercase tracking-widest mb-2 block">Category</label>
             <select 
-              className="w-full px-4 py-3 rounded-xl border border-muted outline-none"
+              className="w-full px-4 py-3 rounded-xl border border-muted focus:ring-2 focus:ring-primary/20 outline-none transition-all cursor-pointer"
               value={formData.category_id}
               onChange={(e) => setFormData({...formData, category_id: e.target.value})}
             >
@@ -415,7 +415,7 @@ export default function AdminProductForm({ productId }: AdminProductFormProps) {
             <textarea 
               rows={4}
               required
-              className="w-full px-4 py-3 rounded-xl border border-muted outline-none resize-none"
+              className="w-full px-4 py-3 rounded-xl border border-muted focus:ring-2 focus:ring-primary/20 outline-none resize-none transition-all"
               value={formData.description}
               onChange={(e) => setFormData({...formData, description: e.target.value})}
             />
@@ -425,12 +425,12 @@ export default function AdminProductForm({ productId }: AdminProductFormProps) {
             <div className="grid grid-cols-3 gap-4 mb-4">
               {/* Existing Images */}
               {existingImages.map((img) => (
-                <div key={img.id} className="relative aspect-square rounded-xl overflow-hidden bg-muted group">
+                <div key={img.id} className="relative aspect-square rounded-xl overflow-hidden bg-muted group border border-muted">
                   <Image src={img.image_url} alt="Product" fill className="object-cover" sizes="100px" />
                   <button 
                     type="button"
                     onClick={() => removeExistingImage(img.id)}
-                    className="absolute top-1 right-1 bg-red-500 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10"
+                    className="absolute top-1 right-1 bg-red-600 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10 shadow-lg"
                   >
                     <X size={14} />
                   </button>
@@ -438,18 +438,18 @@ export default function AdminProductForm({ productId }: AdminProductFormProps) {
               ))}
               {/* New Previews */}
               {previews.map((preview, i) => (
-                <div key={i} className="relative aspect-square rounded-xl overflow-hidden bg-muted group">
-                  <img src={preview} alt="Preview" className="w-full h-full object-cover border-2 border-secondary" />
+                <div key={i} className="relative aspect-square rounded-xl overflow-hidden bg-muted group border-2 border-secondary">
+                  <img src={preview} alt="Preview" className="w-full h-full object-cover" />
                   <button 
                     type="button"
                     onClick={() => removeImage(i)}
-                    className="absolute top-1 right-1 bg-red-500 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                    className="absolute top-1 right-1 bg-red-600 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10 shadow-lg"
                   >
                     <X size={14} />
                   </button>
                 </div>
               ))}
-              <label className="aspect-square rounded-xl border-2 border-dashed border-muted flex flex-col items-center justify-center cursor-pointer hover:bg-muted/30 transition-colors">
+              <label className="aspect-square rounded-xl border-2 border-dashed border-muted flex flex-col items-center justify-center cursor-pointer hover:bg-primary/5 hover:border-primary/30 transition-all">
                 <Upload size={24} className="text-muted-foreground mb-2" />
                 <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Upload</span>
                 <input type="file" multiple className="hidden" onChange={handleImageChange} accept="image/*" />
@@ -461,12 +461,12 @@ export default function AdminProductForm({ productId }: AdminProductFormProps) {
             <div className="grid grid-cols-2 gap-4 mb-4">
               {/* Existing Videos */}
               {existingVideos.map((vid) => (
-                <div key={vid.id} className="relative aspect-video rounded-xl overflow-hidden bg-black group">
+                <div key={vid.id} className="relative aspect-video rounded-xl overflow-hidden bg-black group border border-muted">
                   <video src={vid.video_url} className="w-full h-full object-cover" controls />
                   <button 
                     type="button"
                     onClick={() => removeExistingVideo(vid.id)}
-                    className="absolute top-2 right-2 bg-red-500 text-white p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10"
+                    className="absolute top-2 right-2 bg-red-600 text-white p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10 shadow-lg"
                   >
                     <X size={16} />
                   </button>
@@ -479,14 +479,14 @@ export default function AdminProductForm({ productId }: AdminProductFormProps) {
                   <button 
                     type="button"
                     onClick={() => removeVideo(i)}
-                    className="absolute top-2 right-2 bg-red-500 text-white p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10"
+                    className="absolute top-2 right-2 bg-red-600 text-white p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10 shadow-lg"
                   >
                     <X size={16} />
                   </button>
                 </div>
               ))}
               {(existingVideos.length + videos.length < 2) && (
-                <label className="aspect-video rounded-xl border-2 border-dashed border-muted flex flex-col items-center justify-center cursor-pointer hover:bg-muted/30 transition-colors">
+                <label className="aspect-video rounded-xl border-2 border-dashed border-muted flex flex-col items-center justify-center cursor-pointer hover:bg-primary/5 hover:border-primary/30 transition-all">
                   <Video size={24} className="text-muted-foreground mb-2" />
                   <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Upload Video</span>
                   <input type="file" className="hidden" onChange={handleVideoChange} accept="video/mp4,video/webm,video/quicktime" />
@@ -500,25 +500,25 @@ export default function AdminProductForm({ productId }: AdminProductFormProps) {
               <input 
                 type="checkbox" 
                 id="is_best_seller"
-                className="w-5 h-5 rounded border-muted text-secondary focus:ring-secondary/20"
+                className="w-5 h-5 rounded border-muted text-primary focus:ring-primary/20 cursor-pointer"
                 checked={formData.is_best_seller}
                 onChange={(e) => setFormData({...formData, is_best_seller: e.target.checked})}
               />
-              <label htmlFor="is_best_seller" className="text-sm font-bold text-primary">Add to Best Sellers</label>
+              <label htmlFor="is_best_seller" className="text-sm font-bold text-primary cursor-pointer">Add to Best Sellers</label>
             </div>
             <div className="flex items-center space-x-3">
               <input 
                 type="checkbox" 
                 id="is_featured"
-                className="w-5 h-5 rounded border-muted text-accent focus:ring-accent/20"
+                className="w-5 h-5 rounded border-muted text-primary focus:ring-primary/20 cursor-pointer"
                 checked={formData.is_featured}
                 onChange={(e) => setFormData({...formData, is_featured: e.target.checked})}
               />
-              <label htmlFor="is_featured" className="text-sm font-bold text-primary">Add to Featured Collections</label>
+              <label htmlFor="is_featured" className="text-sm font-bold text-primary cursor-pointer">Add to Featured Collections</label>
             </div>
             <div className="flex items-center space-x-3">
               <select 
-                className="px-4 py-2 rounded-lg border border-muted text-sm font-bold text-primary"
+                className="px-4 py-2 rounded-lg border border-muted text-sm font-bold text-primary focus:ring-2 focus:ring-primary/20 outline-none cursor-pointer"
                 value={formData.stock_status}
                 onChange={(e) => setFormData({...formData, stock_status: e.target.value})}
               >
@@ -534,7 +534,7 @@ export default function AdminProductForm({ productId }: AdminProductFormProps) {
         <button 
           type="submit" 
           disabled={loading}
-          className="px-12 py-4 bg-primary text-primary-foreground rounded-full font-bold flex items-center justify-center space-x-3 hover:bg-accent transition-all shadow-xl hover:shadow-primary/30 disabled:opacity-50"
+          className="px-12 py-4 bg-[#800000] text-white rounded-full font-bold flex items-center justify-center space-x-3 hover:bg-[#8B0000] active:scale-95 transition-all shadow-xl shadow-primary/20 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? <Loader2 className="animate-spin" size={20} /> : <><Save size={20} /> <span>{productId ? 'Update Product' : 'Save Product'}</span></>}
         </button>
