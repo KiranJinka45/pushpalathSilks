@@ -30,12 +30,36 @@ export default function ProductClient({ product }: { product: Product }) {
   const sellingPrice = getSellingPrice(product.price, product.discount_price);
   const discountPercent = getDiscountPercent(product.price, product.discount_price);
   
-  const handleBuyOnWhatsApp = () => {
-    // Single message bubble format: Image URL at top + Details below
-    const imageUrl = product.images[selectedImage] || '';
-    const message = `${imageUrl}\n\n🛍️ *Pushpalatha Silk Sarees - Order Inquiry*\n\n*Product:* ${product.name}\n*Fabric:* ${product.fabric}\n*Color:* ${product.color}\n*Price:* ${formatINR(sellingPrice)}\n*Quantity:* ${quantity}\n*Total:* ${formatINR(sellingPrice * quantity)}\n\n*Is this available?*`;
+  const handleBuyOnWhatsApp = async () => {
+    const message = `🛍️ *Pushpalatha Silk Sarees - Order Inquiry*\n\n*Product:* ${product.name}\n*Fabric:* ${product.fabric}\n*Color:* ${product.color}\n*Price:* ${formatINR(sellingPrice)}\n*Quantity:* ${quantity}\n*Total:* ${formatINR(sellingPrice * quantity)}\n\n*Is this available?*`;
     
-    const whatsappUrl = `https://wa.me/918886851521?text=${encodeURIComponent(message)}`;
+    // Check if we can use the Web Share API to send a real image file + caption
+    if (typeof navigator !== 'undefined' && navigator.share && product.images[selectedImage]) {
+      try {
+        const response = await fetch(product.images[selectedImage]);
+        const blob = await response.blob();
+        const file = new File([blob], `${product.slug}.jpg`, { type: 'image/jpeg' });
+        
+        const shareData = {
+          files: [file],
+          title: 'Pushpalatha Silk Sarees',
+          text: message,
+        };
+
+        if (navigator.canShare && navigator.canShare(shareData)) {
+          await navigator.share(shareData);
+          return; // Success, stop here
+        }
+      } catch (error) {
+        console.error('Error sharing image to WhatsApp:', error);
+        // If it fails, fall through to the direct link method
+      }
+    }
+    
+    // Fallback: Direct Link (Only sends text, image depends on WhatsApp preview engine)
+    const imageUrl = product.images[selectedImage] || '';
+    const fallbackMessage = `${imageUrl}\n\n${message}`;
+    const whatsappUrl = `https://wa.me/918886851521?text=${encodeURIComponent(fallbackMessage)}`;
     window.open(whatsappUrl, '_blank');
   };
 
