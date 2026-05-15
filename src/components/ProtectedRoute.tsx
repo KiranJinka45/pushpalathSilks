@@ -41,7 +41,7 @@ export default function ProtectedRoute({ children, role = 'customer' }: { childr
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#FFFDF0]">
+      <div className="min-h-screen flex items-center justify-center bg-black">
         <div className="text-center">
           <Loader2 className="animate-spin text-primary mx-auto mb-4" size={48} />
           <p className="text-primary font-bold uppercase tracking-widest">Checking Authorization...</p>

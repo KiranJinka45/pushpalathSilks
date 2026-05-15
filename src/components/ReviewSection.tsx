@@ -79,24 +79,24 @@ export default function ReviewSection() {
   };
 
   return (
-    <section className="py-24 bg-[#FDFCF8] overflow-hidden">
+    <section className="py-16 bg-background overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4 uppercase tracking-[0.2em]">Customer Love</h2>
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-3 uppercase tracking-[0.2em]">Customer Love</h2>
           <div className="flex flex-col items-center">
-            <div className="flex justify-center space-x-1 mb-3 text-secondary">
+            <div className="flex justify-center space-x-1 mb-2 text-secondary">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} size={24} fill="currentColor" />
+                <Star key={i} size={20} fill="currentColor" />
               ))}
             </div>
-            <p className="text-muted-foreground font-semibold text-lg italic">
+            <p className="text-muted-foreground font-semibold text-base italic">
               “4.9 / 5 Rating from 127+ Verified Customers”
             </p>
           </div>
         </div>
 
         <div className="relative max-w-4xl mx-auto">
-          <div className="relative h-[400px] md:h-[350px] flex items-center">
+          <div className="relative h-[350px] md:h-[300px] flex items-center">
             <AnimatePresence initial={false} custom={direction}>
               <motion.div
                 key={current}
@@ -111,26 +111,26 @@ export default function ReviewSection() {
                 }}
                 className="absolute w-full"
               >
-                <div className="bg-white p-8 md:p-12 rounded-[2rem] shadow-xl border border-muted relative group">
-                  <Quote className="absolute top-8 right-8 text-secondary/10" size={60} />
+                <div className="bg-muted p-6 md:p-10 rounded-2xl shadow-2xl border border-primary/10 relative group">
+                  <Quote className="absolute top-6 right-6 text-secondary/10" size={50} />
                   
-                  <div className="flex space-x-1 mb-6 text-secondary">
+                  <div className="flex space-x-1 mb-4 text-secondary">
                     {[...Array(reviews[current].rating)].map((_, i) => (
-                      <Star key={i} size={18} fill="currentColor" />
+                      <Star key={i} size={16} fill="currentColor" />
                     ))}
                   </div>
 
-                  <p className="text-primary/90 italic mb-10 text-xl md:text-2xl leading-relaxed">
+                  <p className="text-primary/90 italic mb-8 text-lg md:text-xl leading-relaxed line-clamp-3">
                     &quot;{reviews[current].text}&quot;
                   </p>
 
-                  <div className="flex items-center space-x-4 pt-8 border-t border-muted/50">
-                    <div className="h-14 w-14 rounded-full bg-primary/5 flex items-center justify-center text-primary font-bold text-xl border border-primary/10">
+                  <div className="flex items-center space-x-4 pt-6 border-t border-muted/50">
+                    <div className="h-12 w-12 rounded-full bg-primary/5 flex items-center justify-center text-primary font-bold text-lg border border-primary/10">
                       {reviews[current].name.split(' ').map(n => n[0]).join('')}
                     </div>
                     <div>
-                      <p className="font-bold text-primary text-lg tracking-tight">{reviews[current].name}</p>
-                      <p className="text-xs text-muted-foreground uppercase tracking-widest font-bold">Verified Customer</p>
+                      <p className="font-bold text-primary text-base tracking-tight">{reviews[current].name}</p>
+                      <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-bold">Verified Customer</p>
                     </div>
                   </div>
                 </div>
@@ -142,7 +142,7 @@ export default function ReviewSection() {
           <div className="flex justify-center items-center space-x-8 mt-12">
             <button
               onClick={prevSlide}
-              className="p-3 rounded-full bg-white border border-muted shadow-sm hover:bg-primary hover:text-white transition-all duration-300 text-primary"
+              className="p-3 rounded-full bg-muted border border-primary/20 shadow-sm hover:bg-primary hover:text-black transition-all duration-300 text-primary"
               aria-label="Previous review"
             >
               <ChevronLeft size={24} />
@@ -157,7 +157,7 @@ export default function ReviewSection() {
                     setCurrent(i);
                   }}
                   className={`h-2 transition-all duration-300 rounded-full ${
-                    i === current ? 'w-8 bg-secondary' : 'w-2 bg-muted-foreground/20 hover:bg-muted-foreground/40'
+                    i === current ? 'w-8 bg-primary' : 'w-2 bg-muted/50 hover:bg-muted'
                   }`}
                 />
               ))}
@@ -165,7 +165,7 @@ export default function ReviewSection() {
 
             <button
               onClick={nextSlide}
-              className="p-3 rounded-full bg-white border border-muted shadow-sm hover:bg-primary hover:text-white transition-all duration-300 text-primary"
+              className="p-3 rounded-full bg-muted border border-primary/20 shadow-sm hover:bg-primary hover:text-black transition-all duration-300 text-primary"
               aria-label="Next review"
             >
               <ChevronRight size={24} />

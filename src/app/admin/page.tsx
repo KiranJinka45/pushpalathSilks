@@ -1,56 +1,21 @@
 'use client';
 
+import AdminSidebar from "@/components/AdminSidebar";
 import ProtectedRoute from "@/components/ProtectedRoute";
-import { LayoutDashboard, ShoppingBag, List, Settings, Plus, LogOut } from 'lucide-react';
+import { ShoppingBag, Plus, List, Settings } from 'lucide-react';
 import Link from 'next/link';
-import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 
 export default function AdminDashboard() {
   const router = useRouter();
 
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-    router.push('/');
-    router.refresh();
-  };
-
   return (
     <ProtectedRoute role="admin">
-      <div className="flex min-h-screen bg-muted/20">
-        {/* Sidebar */}
-        <div className="w-64 bg-primary text-primary-foreground p-8 flex flex-col">
-          <div className="mb-12">
-            <h1 className="text-xl font-bold tracking-tight">Admin Console</h1>
-            <p className="text-xs text-secondary font-bold uppercase tracking-widest mt-1">Pushpalatha Silks</p>
-          </div>
-
-          <nav className="flex-grow space-y-2">
-            <Link href="/admin" className="flex items-center space-x-3 px-4 py-3 bg-secondary/20 rounded-xl text-white font-bold">
-              <LayoutDashboard size={20} />
-              <span>Dashboard</span>
-            </Link>
-            <Link href="/admin/products" className="flex items-center space-x-3 px-4 py-3 hover:bg-white/10 rounded-xl transition-colors">
-              <ShoppingBag size={20} />
-              <span>Products</span>
-            </Link>
-            <Link href="/admin/categories" className="flex items-center space-x-3 px-4 py-3 hover:bg-white/10 rounded-xl transition-colors">
-              <List size={20} />
-              <span>Categories</span>
-            </Link>
-          </nav>
-
-          <button 
-            onClick={handleLogout}
-            className="flex items-center space-x-3 px-4 py-3 text-primary-foreground/60 hover:text-white transition-colors mt-auto"
-          >
-            <LogOut size={20} />
-            <span>Logout</span>
-          </button>
-        </div>
+      <div className="flex min-h-screen bg-black text-white">
+        <AdminSidebar />
 
         {/* Main Content */}
-        <div className="flex-1 p-12">
+        <div className="flex-1 lg:ml-64 p-6 md:p-12 bg-gradient-to-br from-black via-[#0a0a0a] to-[#111] mt-16 lg:mt-0">
           <div className="flex justify-between items-center mb-12">
             <div>
               <h2 className="text-3xl font-bold text-primary">Overview</h2>
@@ -73,33 +38,33 @@ export default function AdminDashboard() {
               { label: 'Sold Out', value: '6', icon: <List />, color: 'bg-red-500' },
               { label: 'Categories', value: '6', icon: <Settings />, color: 'bg-purple-500' },
             ].map((stat, i) => (
-              <div key={i} className="bg-white p-8 rounded-3xl shadow-sm border border-muted">
-                <div className={`h-12 w-12 ${stat.color}/10 rounded-2xl flex items-center justify-center text-primary mb-6`}>
+              <div key={i} className="bg-[#050505] p-8 rounded-3xl shadow-2xl border border-primary/10 hover:border-primary/30 transition-all group">
+                <div className={`h-12 w-12 ${stat.color}/20 rounded-2xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform`}>
                   {stat.icon}
                 </div>
-                <p className="text-sm font-bold text-muted-foreground uppercase tracking-widest mb-1">{stat.label}</p>
+                <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-[0.2em] mb-2">{stat.label}</p>
                 <p className="text-3xl font-bold text-primary">{stat.value}</p>
               </div>
             ))}
           </div>
 
           {/* Recent Activity / Quick Actions */}
-          <div className="bg-white p-10 rounded-3xl shadow-sm border border-muted">
-            <h3 className="text-xl font-bold text-primary mb-6">Quick Management</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Link href="/admin/products" className="p-6 border border-muted rounded-2xl hover:border-secondary transition-colors flex items-center justify-between group">
+          <div className="bg-[#050505] p-10 rounded-3xl shadow-2xl border border-primary/10">
+            <h3 className="text-xl font-bold text-primary mb-8">Quick Management</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <Link href="/admin/products" className="p-8 border border-primary/10 rounded-2xl hover:border-primary/40 hover:bg-primary/5 transition-all flex items-center justify-between group">
                 <div>
-                  <h4 className="font-bold text-primary group-hover:text-secondary transition-colors">Manage All Products</h4>
-                  <p className="text-sm text-muted-foreground">Edit prices, descriptions, and stock.</p>
+                  <h4 className="text-lg font-bold text-white group-hover:text-primary transition-colors">Manage All Products</h4>
+                  <p className="text-sm text-muted-foreground mt-1">Edit prices, descriptions, and stock.</p>
                 </div>
-                <ArrowRight className="text-muted-foreground group-hover:text-secondary transition-all" />
+                <ArrowRight className="text-muted-foreground group-hover:text-primary group-hover:translate-x-2 transition-all" />
               </Link>
-              <Link href="/admin/categories" className="p-6 border border-muted rounded-2xl hover:border-secondary transition-colors flex items-center justify-between group">
+              <Link href="/admin/categories" className="p-8 border border-primary/10 rounded-2xl hover:border-primary/40 hover:bg-primary/5 transition-all flex items-center justify-between group">
                 <div>
-                  <h4 className="font-bold text-primary group-hover:text-secondary transition-colors">Manage Categories</h4>
-                  <p className="text-sm text-muted-foreground">Add or remove product categories.</p>
+                  <h4 className="text-lg font-bold text-white group-hover:text-primary transition-colors">Manage Categories</h4>
+                  <p className="text-sm text-muted-foreground mt-1">Add or remove product categories.</p>
                 </div>
-                <ArrowRight className="text-muted-foreground group-hover:text-secondary transition-all" />
+                <ArrowRight className="text-muted-foreground group-hover:text-primary group-hover:translate-x-2 transition-all" />
               </Link>
             </div>
           </div>

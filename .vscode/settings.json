@@ -1,4 +1,8 @@
 {
-    "snyk.advanced.autoSelectOrganization": true,
-    "snyk.advanced.organization": "81f3f661-d0ef-4a70-8e77-1473fc67944e"
+  "css.customData": [
+    ".vscode/tailwind.json"
+  ],
+  "css.lint.unknownAtRules": "ignore",
+  "snyk.advanced.organization": "81f3f661-d0ef-4a70-8e77-1473fc67944e",
+  "snyk.advanced.autoSelectOrganization": true
 }

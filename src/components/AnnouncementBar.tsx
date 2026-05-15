@@ -13,7 +13,7 @@ export default function AnnouncementBar() {
   ];
 
   return (
-    <div className="bg-primary text-primary-foreground py-2 overflow-hidden border-b border-white/10 relative z-[60]">
+    <div className="bg-background text-primary py-3 overflow-hidden border-b border-primary/20 relative z-[60]">
       <div className="flex whitespace-nowrap animate-marquee">
         {/* Render twice for seamless loop */}
         {[...Array(2)].map((_, idx) => (
@@ -21,7 +21,7 @@ export default function AnnouncementBar() {
             {items.map((item, i) => (
               <div key={i} className="flex items-center space-x-4">
                 <Sparkles size={14} className="text-secondary" fill="currentColor" />
-                <span className="text-xs font-bold uppercase tracking-[0.2em]">{item}</span>
+                <span className="text-[10px] font-black uppercase tracking-[0.3em]">{item}</span>
               </div>
             ))}
           </div>

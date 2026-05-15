@@ -1,15 +1,15 @@
 import Link from 'next/link';
-import { Phone, MapPin, Clock } from 'lucide-react';
+import { Phone, MapPin, Clock, Sparkles } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="bg-primary text-primary-foreground pt-16 pb-8">
+    <footer className="bg-background text-white pt-16 pb-10 border-t border-primary/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <div className="col-span-1 md:col-span-1">
-            <Link href="/" className="flex items-center space-x-3 mb-6 group">
-              <div className="h-12 w-12 bg-white rounded-xl flex items-center justify-center overflow-hidden border border-white/20 shadow-lg transition-transform group-hover:scale-105">
+            <Link href="/" className="flex items-center space-x-3 mb-4 group">
+              <div className="h-12 w-12 bg-neutral-900 rounded-xl flex items-center justify-center overflow-hidden border border-primary/20 shadow-2xl transition-transform group-hover:scale-105">
                 <img src="/logo.jpg" alt="Logo" className="h-full w-full object-cover" />
               </div>
               <div className="flex flex-col">
@@ -17,15 +17,15 @@ export default function Footer() {
                 <span className="text-xs uppercase tracking-[0.3em] text-secondary font-bold">Silks</span>
               </div>
             </Link>
-            <p className="text-primary-foreground/80 text-sm leading-relaxed mb-6">
-              Authentic Dharmavaram and Kanchipuram silk sarees. Crafting elegance and tradition since years.
+            <p className="text-white/60 text-sm leading-relaxed mb-6">
+              Authentic Dharmavaram and Kanchipuram silk sarees. Crafting elegance and tradition since generations.
             </p>
             <div className="flex items-center space-x-6">
               <a 
                 href="https://www.instagram.com/pushpalatha_silk_sarees?igsh=YnB5djM4ZjJ3d3Qx&utm_source=qr" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="text-sm font-medium hover:text-secondary transition-colors"
+                className="text-sm font-bold text-primary hover:text-white transition-colors"
               >
                 Instagram
               </a>
@@ -33,7 +33,7 @@ export default function Footer() {
                 href="https://youtube.com/@pushpalathasilks?si=RUZDneAgD3Wikhby" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="text-sm font-medium hover:text-secondary transition-colors"
+                className="text-sm font-bold text-primary hover:text-white transition-colors"
               >
                 YouTube
               </a>
@@ -41,7 +41,7 @@ export default function Footer() {
                 href="https://wa.me/918886851131" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="text-sm font-medium hover:text-secondary transition-colors"
+                className="text-sm font-bold text-primary hover:text-white transition-colors"
               >
                 WhatsApp
               </a>
@@ -103,9 +103,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-primary-foreground/60 space-y-4 md:space-y-0">
+        <div className="border-t border-primary/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-white/40 space-y-4 md:space-y-0">
           <p>© {new Date().getFullYear()} Pushpalatha Silks. All rights reserved.</p>
-          <p>Designed with ❤️ for Traditional Elegance</p>
+          <p className="flex items-center">Designed with <Sparkles size={12} className="mx-1 text-primary" /> for Traditional Elegance</p>
         </div>
       </div>
     </footer>

@@ -48,14 +48,14 @@ export default function ProductGrid({ products }: ProductGridProps) {
   return (
     <div>
       {/* Filters & Search */}
-      <div className="bg-white p-6 rounded-2xl shadow-sm border border-muted mb-12">
+      <div className="bg-neutral-900/50 backdrop-blur-md p-8 rounded-2xl shadow-2xl border border-primary/10 mb-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <div className="md:col-span-2 relative">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" size={20} />
             <input 
               type="text" 
               placeholder="Search sarees by name..."
-              className="w-full pl-12 pr-4 py-3 rounded-xl border border-muted focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
+              className="w-full pl-12 pr-4 py-3 rounded-xl border border-primary/10 bg-black/50 text-white focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-muted-foreground"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -64,7 +64,7 @@ export default function ProductGrid({ products }: ProductGridProps) {
           <div className="relative">
             <Filter className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
             <select 
-              className="w-full pl-12 pr-4 py-3 rounded-xl border border-muted focus:outline-none appearance-none bg-white font-medium"
+              className="w-full pl-12 pr-4 py-3 rounded-xl border border-primary/10 focus:outline-none appearance-none bg-black/50 text-white font-medium cursor-pointer"
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
             >
@@ -75,7 +75,7 @@ export default function ProductGrid({ products }: ProductGridProps) {
           <div className="relative">
             <SlidersHorizontal className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
             <select 
-              className="w-full pl-12 pr-4 py-3 rounded-xl border border-muted focus:outline-none appearance-none bg-white font-medium"
+              className="w-full pl-12 pr-4 py-3 rounded-xl border border-primary/10 focus:outline-none appearance-none bg-black/50 text-white font-medium cursor-pointer"
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
             >
@@ -100,8 +100,8 @@ export default function ProductGrid({ products }: ProductGridProps) {
           ))}
         </div>
       ) : (
-        <div className="text-center py-24 bg-muted/20 rounded-3xl border-2 border-dashed border-muted">
-          <Search size={48} className="mx-auto mb-4 opacity-20" />
+        <div className="text-center py-24 bg-neutral-900/30 rounded-3xl border-2 border-dashed border-primary/10">
+          <Search size={48} className="mx-auto mb-4 opacity-10" />
           <h3 className="text-xl font-bold text-primary mb-2">No sarees found</h3>
           <p className="text-muted-foreground">Try adjusting your search or filters.</p>
         </div>

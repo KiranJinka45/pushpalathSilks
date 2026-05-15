@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import Link from 'next/link';
-import { Plus, Edit, Trash2, ExternalLink, LayoutDashboard, ShoppingBag, List, LogOut } from 'lucide-react';
+import AdminSidebar from "@/components/AdminSidebar";
+import { Plus, Edit, Trash2, ExternalLink } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { getProductImage } from '@/lib/media';
 
@@ -69,43 +70,13 @@ export default function AdminProductsPage() {
     }
   };
 
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-    router.push('/');
-    router.refresh();
-  };
-
   return (
     <ProtectedRoute role="admin">
-      <div className="flex min-h-screen bg-muted/20">
-        {/* Sidebar */}
-        <div className="w-64 bg-primary text-primary-foreground p-8 flex flex-col fixed h-full">
-          <div className="mb-12 text-center">
-            <h1 className="text-xl font-bold tracking-tight">Admin Console</h1>
-            <p className="text-xs text-secondary font-bold uppercase tracking-widest mt-1">Pushpalatha Silks</p>
-          </div>
-          <nav className="flex-grow space-y-2">
-            <Link href="/admin" className="flex items-center space-x-3 px-4 py-3 hover:bg-white/10 rounded-xl transition-colors">
-              <LayoutDashboard size={20} />
-              <span>Dashboard</span>
-            </Link>
-            <Link href="/admin/products" className="flex items-center space-x-3 px-4 py-3 bg-secondary/20 rounded-xl text-white font-bold">
-              <ShoppingBag size={20} />
-              <span>Products</span>
-            </Link>
-            <Link href="/admin/categories" className="flex items-center space-x-3 px-4 py-3 hover:bg-white/10 rounded-xl transition-colors">
-              <List size={20} />
-              <span>Categories</span>
-            </Link>
-          </nav>
-          <button onClick={handleLogout} className="flex items-center space-x-3 px-4 py-3 text-primary-foreground/60 hover:text-white transition-colors mt-auto">
-            <LogOut size={20} />
-            <span>Logout</span>
-          </button>
-        </div>
+      <div className="flex min-h-screen bg-black text-white">
+        <AdminSidebar />
 
         {/* Main Content */}
-        <div className="flex-1 ml-64 p-12">
+        <div className="flex-1 lg:ml-64 p-6 md:p-12 bg-gradient-to-br from-black via-[#0a0a0a] to-[#111] mt-16 lg:mt-0">
           <div className="flex justify-between items-center mb-12">
             <div>
               <h2 className="text-3xl font-bold text-primary">Products</h2>
@@ -120,10 +91,10 @@ export default function AdminProductsPage() {
             </Link>
           </div>
 
-          <div className="bg-white rounded-3xl shadow-sm border border-muted overflow-hidden">
+          <div className="bg-[#050505] rounded-3xl shadow-2xl border border-primary/20 overflow-x-auto">
             <table className="w-full text-left">
               <thead>
-                <tr className="bg-muted/30 border-b border-muted">
+                <tr className="bg-primary/10 border-b border-primary/20">
                   <th className="px-8 py-5 text-xs font-bold text-primary uppercase tracking-widest">Product</th>
                   <th className="px-8 py-5 text-xs font-bold text-primary uppercase tracking-widest">Category</th>
                   <th className="px-8 py-5 text-xs font-bold text-primary uppercase tracking-widest">Price</th>
@@ -131,7 +102,7 @@ export default function AdminProductsPage() {
                   <th className="px-8 py-5 text-xs font-bold text-primary uppercase tracking-widest text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-muted">
+              <tbody className="divide-y divide-primary/10">
                 {products.map((product) => (
                   <tr key={product.id} className="hover:bg-muted/10 transition-colors">
                     <td className="px-8 py-6">

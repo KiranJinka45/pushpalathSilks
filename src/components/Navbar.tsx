@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { ShoppingCart, Menu, X, User, LogOut, Sparkles } from 'lucide-react';
+import { ShoppingCart, Menu, X, User, LogOut } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { supabase } from '@/lib/supabase';
 import { useRouter } from 'next/navigation';
@@ -55,12 +55,12 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-muted">
+    <nav className="sticky top-0 z-50 glass border-b border-primary/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-20 items-center">
+        <div className="flex justify-between h-16 items-center">
           <div className="flex-shrink-0 flex items-center">
-            <Link href="/" className="flex items-center space-x-2 group">
-              <div className="h-10 w-10 bg-white rounded-xl flex items-center justify-center overflow-hidden border border-muted shadow-sm transition-transform group-hover:rotate-6">
+            <Link href="/" className="flex items-center space-x-3 group">
+              <div className="h-10 w-10 bg-neutral-900 rounded-xl flex items-center justify-center overflow-hidden border border-primary/20 shadow-2xl transition-all group-hover:rotate-6 group-hover:scale-110">
                 <img src="/logo.jpg" alt="Logo" className="h-full w-full object-cover" />
               </div>
               <div className="flex flex-col">
@@ -125,18 +125,18 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-white border-b border-muted animate-in slide-in-from-top duration-300">
+        <div className="md:hidden bg-muted border-b border-primary/10 animate-in slide-in-from-top duration-300">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <Link href="/" onClick={() => setIsOpen(false)} className="block px-3 py-4 text-base font-medium border-b border-muted/50">Home</Link>
-            <Link href="/products" onClick={() => setIsOpen(false)} className="block px-3 py-4 text-base font-medium border-b border-muted/50">Shop Sarees</Link>
-            <Link href="/about" onClick={() => setIsOpen(false)} className="block px-3 py-4 text-base font-medium border-b border-muted/50">About Us</Link>
-            <Link href="/contact" onClick={() => setIsOpen(false)} className="block px-3 py-4 text-base font-medium border-b border-muted/50">Contact</Link>
+            <Link href="/" onClick={() => setIsOpen(false)} className="block px-3 py-4 text-base font-medium border-b border-primary/5 text-white">Home</Link>
+            <Link href="/products" onClick={() => setIsOpen(false)} className="block px-3 py-4 text-base font-medium border-b border-primary/5 text-white">Shop Sarees</Link>
+            <Link href="/about" onClick={() => setIsOpen(false)} className="block px-3 py-4 text-base font-medium border-b border-primary/5 text-white">About Us</Link>
+            <Link href="/contact" onClick={() => setIsOpen(false)} className="block px-3 py-4 text-base font-medium border-b border-primary/5 text-white">Contact</Link>
             {user ? (
               <>
                 {role === 'admin' && (
-                  <Link href="/admin" onClick={() => setIsOpen(false)} className="block px-3 py-4 text-base font-medium border-b border-muted/50 text-secondary font-bold">Admin Console</Link>
+                  <Link href="/admin" onClick={() => setIsOpen(false)} className="block px-3 py-4 text-base font-medium border-b border-primary/5 text-primary font-bold">Admin Console</Link>
                 )}
-                <button onClick={handleLogout} className="w-full text-left px-3 py-4 text-base font-medium text-red-500">Logout</button>
+                <button onClick={handleLogout} className="w-full text-left px-3 py-4 text-base font-medium text-red-400">Logout</button>
               </>
             ) : (
               <Link href="/login" onClick={() => setIsOpen(false)} className="block px-3 py-4 text-base font-medium text-primary">Login / Signup</Link>

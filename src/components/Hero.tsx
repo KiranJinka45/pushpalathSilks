@@ -45,11 +45,11 @@ export default function Hero() {
   }, [nextSlide]);
 
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-[#FFFDF0]">
+    <section className="relative min-h-[75vh] flex items-center overflow-hidden bg-background">
       {/* Background decorative element */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/5 clip-path-hero hidden md:block" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full py-12 md:py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full py-8 md:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <motion.div
@@ -70,27 +70,38 @@ export default function Hero() {
               </motion.span>
             </AnimatePresence>
             
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-primary leading-[1.1] mb-6">
-              Timeless Elegance in <br />
-              <span className="text-secondary italic">Every Weave</span>
-            </h1>
+            <div className="min-h-[160px] md:min-h-[220px]">
+              <AnimatePresence mode="wait">
+                <motion.h1
+                  key={`title-${currentSlide}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.6 }}
+                  className="text-4xl md:text-6xl lg:text-7xl font-serif text-primary leading-[1.1] mb-6"
+                >
+                  {slides[currentSlide].title.split(' ')[0]} <br />
+                  <span className="text-secondary italic">{slides[currentSlide].title.split(' ').slice(1).join(' ')}</span>
+                </motion.h1>
+              </AnimatePresence>
+            </div>
             <p className="text-lg text-muted-foreground mb-10 max-w-lg leading-relaxed">
               Discover the finest Dharmavaram and Kanchipuram silk sarees, handcrafted with passion and tradition in the heart of Andhra Pradesh.
             </p>
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
               <Link 
                 href="/products" 
-                className="px-8 py-4 bg-primary text-primary-foreground rounded-full font-bold flex items-center justify-center space-x-2 hover:bg-accent transition-all shadow-xl hover:shadow-primary/20 group"
+                className="px-10 py-5 gold-gradient text-black rounded-full font-black uppercase tracking-[0.2em] text-sm flex items-center justify-center space-x-3 hover:scale-105 transition-all shadow-2xl hover:shadow-primary/30 group"
               >
                 <span>Explore Collection</span>
-                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </Link>
               <a 
                 href="https://wa.me/918886851521" 
-                className="px-8 py-4 bg-white text-primary border-2 border-primary rounded-full font-bold flex items-center justify-center space-x-2 hover:bg-muted transition-all shadow-md"
+                className="px-10 py-5 bg-transparent text-primary border-2 border-primary/20 rounded-full font-black uppercase tracking-[0.2em] text-sm flex items-center justify-center space-x-3 hover:bg-primary/5 transition-all"
               >
-                <MessageCircle size={20} />
-                <span>WhatsApp Us</span>
+                <MessageCircle size={18} />
+                <span className="whitespace-nowrap">WhatsApp Us</span>
               </a>
             </div>
           </motion.div>

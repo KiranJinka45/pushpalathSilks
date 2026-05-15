@@ -100,8 +100,8 @@ export default function AdminProductForm({ productId }: AdminProductFormProps) {
           alert(`File "${file.name}" is not an image.`);
           return;
         }
-        if (file.size > 5 * 1024 * 1024) {
-          alert(`Image "${file.name}" must be less than 5MB.`);
+        if (file.size > 20 * 1024 * 1024) {
+          alert(`Image "${file.name}" must be less than 20MB.`);
           return;
         }
       }
@@ -127,8 +127,8 @@ export default function AdminProductForm({ productId }: AdminProductFormProps) {
           alert(`File "${file.name}" is not a video.`);
           return;
         }
-        if (file.size > 50 * 1024 * 1024) {
-          alert(`Video "${file.name}" must be less than 50MB.`);
+        if (file.size > 100 * 1024 * 1024) {
+          alert(`Video "${file.name}" must be less than 100MB.`);
           return;
         }
       }
@@ -327,7 +327,7 @@ export default function AdminProductForm({ productId }: AdminProductFormProps) {
   if (fetching) return <div className="p-12 text-center font-bold text-primary animate-pulse">Loading Product Data...</div>;
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-12 bg-white p-12 rounded-3xl border border-muted shadow-sm">
+    <form onSubmit={handleSubmit} className="space-y-12 bg-black/40 backdrop-blur-xl p-6 md:p-12 rounded-3xl border-2 border-primary/50 shadow-2xl shadow-primary/10">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         <div className="space-y-6">
           <div>
@@ -335,7 +335,7 @@ export default function AdminProductForm({ productId }: AdminProductFormProps) {
             <input 
               type="text" 
               required
-              className="w-full px-4 py-3 rounded-xl border border-muted focus:ring-2 focus:ring-primary/20 outline-none"
+              className="w-full px-4 py-3 rounded-xl border-2 border-primary/30 bg-black/50 text-white focus:ring-2 focus:ring-primary/50 outline-none transition-all hover:border-primary"
               value={formData.name}
               onChange={(e) => setFormData({...formData, name: e.target.value, slug: e.target.value.toLowerCase().replace(/ /g, '-')})}
             />
@@ -345,7 +345,7 @@ export default function AdminProductForm({ productId }: AdminProductFormProps) {
             <input 
               type="text" 
               required
-              className="w-full px-4 py-3 rounded-xl border border-muted bg-muted/20 outline-none"
+              className="w-full px-4 py-3 rounded-xl border-2 border-primary/20 bg-muted/10 text-muted-foreground outline-none cursor-not-allowed"
               value={formData.slug}
               readOnly
             />
@@ -356,7 +356,7 @@ export default function AdminProductForm({ productId }: AdminProductFormProps) {
               <input 
                 type="number" 
                 required
-                className="w-full px-4 py-3 rounded-xl border border-muted focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                className="w-full px-4 py-3 rounded-xl border-2 border-primary/30 bg-black/50 text-white focus:ring-2 focus:ring-primary/50 outline-none transition-all hover:border-primary"
                 value={formData.price}
                 onChange={(e) => setFormData({...formData, price: e.target.value})}
               />
@@ -365,7 +365,7 @@ export default function AdminProductForm({ productId }: AdminProductFormProps) {
               <label className="text-xs font-bold text-primary uppercase tracking-widest mb-2 block">Discount Price (₹)</label>
               <input 
                 type="number" 
-                className="w-full px-4 py-3 rounded-xl border border-muted focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                className="w-full px-4 py-3 rounded-xl border-2 border-primary/30 bg-black/50 text-white focus:ring-2 focus:ring-primary/50 outline-none transition-all hover:border-primary"
                 value={formData.discount_price}
                 onChange={(e) => setFormData({...formData, discount_price: e.target.value})}
               />
@@ -378,7 +378,7 @@ export default function AdminProductForm({ productId }: AdminProductFormProps) {
                 type="text" 
                 required
                 placeholder="e.g. Pure Silk"
-                className="w-full px-4 py-3 rounded-xl border border-muted focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                className="w-full px-4 py-3 rounded-xl border-2 border-primary/30 bg-black/50 text-white focus:ring-2 focus:ring-primary/50 outline-none transition-all hover:border-primary"
                 value={formData.fabric}
                 onChange={(e) => setFormData({...formData, fabric: e.target.value})}
               />
@@ -388,7 +388,7 @@ export default function AdminProductForm({ productId }: AdminProductFormProps) {
               <input 
                 type="text" 
                 required
-                className="w-full px-4 py-3 rounded-xl border border-muted focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                className="w-full px-4 py-3 rounded-xl border-2 border-primary/30 bg-black/50 text-white focus:ring-2 focus:ring-primary/50 outline-none transition-all hover:border-primary"
                 value={formData.color}
                 onChange={(e) => setFormData({...formData, color: e.target.value})}
               />
@@ -397,7 +397,7 @@ export default function AdminProductForm({ productId }: AdminProductFormProps) {
           <div>
             <label className="text-xs font-bold text-primary uppercase tracking-widest mb-2 block">Category</label>
             <select 
-              className="w-full px-4 py-3 rounded-xl border border-muted focus:ring-2 focus:ring-primary/20 outline-none transition-all cursor-pointer"
+              className="w-full px-4 py-3 rounded-xl border-2 border-primary/30 bg-black/50 text-white focus:ring-2 focus:ring-primary/50 outline-none transition-all hover:border-primary cursor-pointer"
               value={formData.category_id}
               onChange={(e) => setFormData({...formData, category_id: e.target.value})}
             >
@@ -415,7 +415,7 @@ export default function AdminProductForm({ productId }: AdminProductFormProps) {
             <textarea 
               rows={4}
               required
-              className="w-full px-4 py-3 rounded-xl border border-muted focus:ring-2 focus:ring-primary/20 outline-none resize-none transition-all"
+              className="w-full px-4 py-3 rounded-xl border-2 border-primary/30 bg-black/50 text-white focus:ring-2 focus:ring-primary/50 outline-none resize-none transition-all hover:border-primary"
               value={formData.description}
               onChange={(e) => setFormData({...formData, description: e.target.value})}
             />
@@ -495,7 +495,7 @@ export default function AdminProductForm({ productId }: AdminProductFormProps) {
             </div>
           </div>
 
-          <div className="flex items-center space-x-8 pt-4">
+          <div className="flex flex-col sm:flex-row sm:items-center space-y-6 sm:space-y-0 sm:space-x-8 pt-4">
             <div className="flex items-center space-x-3">
               <input 
                 type="checkbox" 
@@ -530,13 +530,13 @@ export default function AdminProductForm({ productId }: AdminProductFormProps) {
         </div>
       </div>
 
-      <div className="pt-8 border-t border-muted flex justify-end">
+      <div className="pt-8 border-t border-primary/20 flex justify-end">
         <button 
           type="submit" 
           disabled={loading}
-          className="px-12 py-4 bg-[#800000] text-white rounded-full font-bold flex items-center justify-center space-x-3 hover:bg-[#8B0000] active:scale-95 transition-all shadow-xl shadow-primary/20 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="px-12 py-5 gold-gradient text-black rounded-full font-black uppercase tracking-[0.2em] text-sm flex items-center justify-center space-x-3 hover:scale-[1.02] active:scale-95 transition-all shadow-2xl hover:shadow-primary/30 disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {loading ? <Loader2 className="animate-spin" size={20} /> : <><Save size={20} /> <span>{productId ? 'Update Product' : 'Save Product'}</span></>}
+          {loading ? <Loader2 className="animate-spin" size={20} /> : <><Save size={20} /> <span>{productId ? 'Update Masterpiece' : 'Publish Masterpiece'}</span></>}
         </button>
       </div>
     </form>

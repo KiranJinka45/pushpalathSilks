@@ -34,7 +34,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-muted relative"
+      className="group glass rounded-2xl overflow-hidden shadow-2xl hover:shadow-primary/10 transition-all border border-primary/10 hover:border-primary/30 relative"
     >
       <div className="relative aspect-[3/4] overflow-hidden bg-muted">
         {imageUrl ? (
@@ -58,8 +58,8 @@ export default function ProductCard({ product }: ProductCardProps) {
         )}
 
         {isSoldOut && (
-          <div className="absolute inset-0 bg-black/60 flex items-center justify-center z-10">
-            <span className="bg-white text-primary px-4 py-2 rounded-full font-bold uppercase tracking-widest text-sm">
+          <div className="absolute inset-0 bg-black/80 flex items-center justify-center z-10 backdrop-blur-sm">
+            <span className="bg-neutral-800 text-primary border border-primary/30 px-6 py-2 rounded-full font-black uppercase tracking-[0.2em] text-xs">
               Sold Out
             </span>
           </div>
@@ -67,54 +67,53 @@ export default function ProductCard({ product }: ProductCardProps) {
         <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-4 z-10">
           <Link 
             href={`/products/${product.slug}`}
-            className="p-3 bg-white text-primary rounded-full hover:bg-secondary hover:text-white transition-colors shadow-lg"
+            className="p-4 glass text-primary rounded-full hover:gold-gradient hover:text-black transition-all shadow-2xl border border-primary/20"
           >
             <Eye size={20} />
           </Link>
           {!isSoldOut && (
             <button 
               onClick={() => addToCart({ ...product, price: sellingPrice, image_url: imageUrl })}
-              className="p-3 bg-primary text-white rounded-full hover:bg-accent transition-colors shadow-lg"
+              className="p-4 gold-gradient text-black rounded-full hover:scale-110 transition-all shadow-2xl"
             >
               <ShoppingCart size={20} />
             </button>
           )}
         </div>
       </div>
-      <div className="p-6">
-        <p className="text-xs text-secondary font-bold uppercase tracking-widest mb-2">{product.fabric}</p>
+      <div className="p-8">
+        <p className="text-[10px] text-secondary font-black uppercase tracking-[0.3em] mb-3">{product.fabric}</p>
         <Link href={`/products/${product.slug}`}>
-          <h3 className="text-lg font-bold text-primary mb-2 line-clamp-1 group-hover:text-secondary transition-colors">
+          <h3 className="text-xl font-bold text-primary mb-3 line-clamp-1 group-hover:text-secondary transition-colors uppercase tracking-wide">
             {product.name}
           </h3>
         </Link>
-        <div className="space-y-1">
-          <div className="flex items-center space-x-2">
-            <span className="text-xl font-bold text-primary">{formatINR(sellingPrice)}</span>
+        <div className="space-y-4">
+          <div className="flex items-baseline space-x-3">
+            <span className="text-3xl font-black text-primary tracking-tighter">{formatINR(sellingPrice)}</span>
             {discountPercent > 0 && (
-              <span className="text-sm text-muted-foreground line-through opacity-60">
-                M.R.P: {formatINR(product.price)}
+              <span className="text-sm text-muted-foreground line-through opacity-30">
+                {formatINR(product.price)}
               </span>
             )}
           </div>
           {discountPercent > 0 && (
-            <p className="text-xs text-green-600 font-medium">
-              Save {formatINR(product.discount_price || 0)}
+            <p className="text-[10px] text-green-400 font-black bg-green-400/5 w-fit px-3 py-1 rounded-full border border-green-400/20 uppercase tracking-widest">
+              {discountPercent}% Private Offer
             </p>
           )}
-          <p className="text-[10px] text-muted-foreground">FREE delivery within 2–4 days</p>
         </div>
         <button 
           disabled={isSoldOut}
           onClick={() => addToCart({ ...product, price: sellingPrice, image_url: imageUrl })}
-          className={`w-full mt-6 py-3 rounded-xl font-bold transition-all flex items-center justify-center space-x-2 ${
+          className={`w-full mt-8 py-5 rounded-full font-black uppercase tracking-[0.2em] text-[10px] transition-all flex items-center justify-center space-x-3 ${
             isSoldOut 
-              ? 'bg-muted text-muted-foreground cursor-not-allowed' 
-              : 'bg-primary/5 text-primary hover:bg-primary hover:text-white border border-primary/20'
+              ? 'bg-muted text-muted-foreground/50 border border-muted cursor-not-allowed' 
+              : 'gold-gradient text-black shadow-2xl shadow-primary/20 hover:scale-[1.02] active:scale-95'
           }`}
         >
-          <ShoppingCart size={18} />
-          <span>{isSoldOut ? 'Sold Out' : 'Add to Cart'}</span>
+          <ShoppingCart size={16} />
+          <span>{isSoldOut ? 'Unavailable' : 'Secure Acquisition'}</span>
         </button>
       </div>
     </motion.div>

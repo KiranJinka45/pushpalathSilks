@@ -56,13 +56,13 @@ export default function AuthForm({ type }: AuthFormProps) {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto bg-white p-10 rounded-3xl shadow-2xl border border-muted">
+    <div className="w-full max-w-md mx-auto bg-[#050505] p-10 rounded-3xl shadow-2xl border-2 border-primary/20">
       <div className="text-center mb-10">
         <h2 className="text-3xl font-bold text-primary mb-2 uppercase tracking-widest">
           {type === 'login' ? 'Welcome Back' : 'Create Account'}
         </h2>
         <p className="text-muted-foreground text-sm">
-          {type === 'login' ? 'Login to continue your shopping' : 'Join us for an exquisite saree collection'}
+          {type === 'login' ? 'Login to continue' : 'Join us for an exquisite saree collection'}
         </p>
       </div>
 
@@ -76,7 +76,7 @@ export default function AuthForm({ type }: AuthFormProps) {
                 type="text" 
                 placeholder="John Doe"
                 required
-                className="w-full pl-12 pr-4 py-3 rounded-xl border border-muted focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
+                className="w-full pl-12 pr-4 py-3 rounded-xl border-2 border-primary/20 bg-black text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
               />
@@ -92,7 +92,7 @@ export default function AuthForm({ type }: AuthFormProps) {
               type="email" 
               placeholder="name@example.com"
               required
-              className="w-full pl-12 pr-4 py-3 rounded-xl border border-muted focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
+              className="w-full pl-12 pr-4 py-3 rounded-xl border-2 border-primary/20 bg-black text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -107,7 +107,7 @@ export default function AuthForm({ type }: AuthFormProps) {
               type="password" 
               placeholder="••••••••"
               required
-              className="w-full pl-12 pr-4 py-3 rounded-xl border border-muted focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
+              className="w-full pl-12 pr-4 py-3 rounded-xl border-2 border-primary/20 bg-black text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -115,7 +115,7 @@ export default function AuthForm({ type }: AuthFormProps) {
         </div>
 
         {error && (
-          <p className="text-xs text-red-500 bg-red-50 p-3 rounded-lg border border-red-100 font-medium">
+          <p className="text-xs text-red-500 bg-red-500/10 p-3 rounded-lg border border-red-500/50 font-medium text-center">
             {error}
           </p>
         )}
@@ -123,7 +123,7 @@ export default function AuthForm({ type }: AuthFormProps) {
         <button 
           type="submit" 
           disabled={loading}
-          className="w-full py-4 bg-primary text-primary-foreground rounded-xl font-bold flex items-center justify-center space-x-3 hover:bg-accent transition-all shadow-xl hover:shadow-primary/20 disabled:opacity-50"
+          className="w-full py-4 bg-primary text-primary-foreground rounded-xl font-bold flex items-center justify-center space-x-3 hover:bg-accent hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-primary/20 disabled:opacity-50"
         >
           {loading ? (
             <Loader2 className="animate-spin" size={20} />
@@ -136,12 +136,12 @@ export default function AuthForm({ type }: AuthFormProps) {
         </button>
       </form>
 
-      <div className="mt-8 pt-8 border-t border-muted text-center">
+      <div className="mt-8 pt-8 border-t border-primary/10 text-center">
         <p className="text-sm text-muted-foreground">
           {type === 'login' ? "Don't have an account? " : "Already have an account? "}
           <button 
             onClick={() => router.push(type === 'login' ? '/signup' : '/login')}
-            className="text-primary font-bold hover:text-secondary transition-colors"
+            className="text-primary font-bold hover:text-white transition-colors"
           >
             {type === 'login' ? 'Sign Up Free' : 'Login Here'}
           </button>

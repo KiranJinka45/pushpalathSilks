@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import Link from 'next/link';
-import { Plus, Trash2, LayoutDashboard, ShoppingBag, List, LogOut, Loader2 } from 'lucide-react';
+import AdminSidebar from "@/components/AdminSidebar";
+import { Plus, Trash2, Loader2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 interface Category {
@@ -70,43 +71,13 @@ export default function AdminCategoriesPage() {
     }
   };
 
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-    router.push('/');
-    router.refresh();
-  };
-
   return (
     <ProtectedRoute role="admin">
-      <div className="flex min-h-screen bg-muted/20">
-        {/* Sidebar */}
-        <div className="w-64 bg-primary text-primary-foreground p-8 flex flex-col fixed h-full">
-          <div className="mb-12 text-center">
-            <h1 className="text-xl font-bold tracking-tight">Admin Console</h1>
-            <p className="text-xs text-secondary font-bold uppercase tracking-widest mt-1">Pushpalatha Silks</p>
-          </div>
-          <nav className="flex-grow space-y-2">
-            <Link href="/admin" className="flex items-center space-x-3 px-4 py-3 hover:bg-white/10 rounded-xl transition-colors">
-              <LayoutDashboard size={20} />
-              <span>Dashboard</span>
-            </Link>
-            <Link href="/admin/products" className="flex items-center space-x-3 px-4 py-3 hover:bg-white/10 rounded-xl transition-colors">
-              <ShoppingBag size={20} />
-              <span>Products</span>
-            </Link>
-            <Link href="/admin/categories" className="flex items-center space-x-3 px-4 py-3 bg-secondary/20 rounded-xl text-white font-bold">
-              <List size={20} />
-              <span>Categories</span>
-            </Link>
-          </nav>
-          <button onClick={handleLogout} className="flex items-center space-x-3 px-4 py-3 text-primary-foreground/60 hover:text-white transition-colors mt-auto">
-            <LogOut size={20} />
-            <span>Logout</span>
-          </button>
-        </div>
+      <div className="flex min-h-screen bg-black text-white">
+        <AdminSidebar />
 
         {/* Main Content */}
-        <div className="flex-1 ml-64 p-12">
+        <div className="flex-1 lg:ml-64 p-6 md:p-12 bg-gradient-to-br from-black via-[#0a0a0a] to-[#111] mt-16 lg:mt-0">
           <div className="mb-12">
             <h2 className="text-3xl font-bold text-primary">Categories</h2>
             <p className="text-muted-foreground">Manage product categories for your store.</p>
@@ -114,15 +85,15 @@ export default function AdminCategoriesPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {/* Add Category Form */}
-            <div className="bg-white p-8 rounded-3xl shadow-sm border border-muted h-fit">
+            <div className="bg-[#050505] p-8 rounded-3xl shadow-2xl border border-primary/20 h-fit">
               <h3 className="text-lg font-bold text-primary mb-6 uppercase tracking-widest">Add Category</h3>
-              <form onSubmit={handleAddCategory} className="space-y-4">
+              <form onSubmit={handleAddCategory} className="space-y-6">
                 <div>
                   <label className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-2 block">Category Name</label>
                   <input 
                     type="text" 
                     required
-                    className="w-full px-4 py-3 rounded-xl border border-muted outline-none focus:ring-2 focus:ring-primary/20"
+                    className="w-full px-4 py-3 rounded-xl border-2 border-primary/30 bg-black/50 text-white focus:ring-2 focus:ring-primary/50 outline-none transition-all hover:border-primary"
                     placeholder="e.g. Kanchipuram"
                     value={newCategoryName}
                     onChange={(e) => setNewCategoryName(e.target.value)}
@@ -131,7 +102,7 @@ export default function AdminCategoriesPage() {
                 <button 
                   type="submit" 
                   disabled={adding}
-                  className="w-full py-4 bg-primary text-primary-foreground rounded-xl font-bold flex items-center justify-center space-x-2 hover:bg-accent transition-all disabled:opacity-50 shadow-lg"
+                  className="w-full py-4 bg-primary text-primary-foreground rounded-xl font-bold flex items-center justify-center space-x-2 hover:bg-accent transition-all disabled:opacity-50 shadow-lg shadow-primary/10"
                 >
                   {adding ? <Loader2 className="animate-spin" size={20} /> : <><Plus size={20} /> <span>Create Category</span></>}
                 </button>
@@ -139,16 +110,16 @@ export default function AdminCategoriesPage() {
             </div>
 
             {/* Categories List */}
-            <div className="md:col-span-2 bg-white rounded-3xl shadow-sm border border-muted overflow-hidden">
+            <div className="md:col-span-2 bg-[#050505] rounded-3xl shadow-2xl border border-primary/20 overflow-x-auto">
               <table className="w-full text-left">
                 <thead>
-                  <tr className="bg-muted/30 border-b border-muted">
+                  <tr className="bg-primary/10 border-b border-primary/20">
                     <th className="px-8 py-5 text-xs font-bold text-primary uppercase tracking-widest">Name</th>
                     <th className="px-8 py-5 text-xs font-bold text-primary uppercase tracking-widest">Slug</th>
                     <th className="px-8 py-5 text-xs font-bold text-primary uppercase tracking-widest text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-muted">
+                <tbody className="divide-y divide-primary/10">
                   {categories.map((category) => (
                     <tr key={category.id} className="hover:bg-muted/10 transition-colors">
                       <td className="px-8 py-6 font-bold text-primary">{category.name}</td>

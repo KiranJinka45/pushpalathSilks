@@ -9,11 +9,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const { data: product } = await supabase
     .from('products')
-    .select('name, description')
+    .select('name, description, product_images(image_url)')
     .eq('slug', slug)
     .single();
 
   if (!product) return { title: 'Product Not Found | Pushpalatha Silk Sarees' };
+
+  const rawProduct = product as any;
+  const imageUrl = rawProduct.product_images?.[0]?.image_url || 'https://www.pushpalathasilks.com/placeholder-saree.jpg';
 
   return {
     title: `${product.name} | Pushpalatha Silk Sarees`,
@@ -21,6 +24,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       title: product.name,
       description: product.description,
+      images: [
+        {
+          url: imageUrl,
+          width: 800,
+          height: 1200,
+          alt: product.name,
+        },
+      ],
     }
   };
 }

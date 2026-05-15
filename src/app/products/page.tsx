@@ -56,7 +56,7 @@ export default function ProductsPage() {
   }, []);
 
   return (
-    <div className="bg-white min-h-screen py-16">
+    <div className="bg-black min-h-screen py-16 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-12">
           <h1 className="text-4xl font-bold text-primary mb-4 uppercase tracking-widest">Our Collection</h1>

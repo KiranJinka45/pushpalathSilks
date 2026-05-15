@@ -28,6 +28,10 @@ const config: Config = {
           foreground: "var(--muted-foreground)",
         },
       },
+      fontFamily: {
+        serif: ["'Cormorant Garamond'", "serif"],
+        sans: ["'Montserrat'", "sans-serif"],
+      },
     },
   },
   plugins: [],
